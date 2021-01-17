@@ -32,7 +32,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 
 # Kernel: Base flags
 BOARD_KERNEL_CMDLINE := androidboot.hardware=exynos9611 androidboot.selinux=permissive
-BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_BOOTIMG_HEADER_VERSION := 1
 
 # Kernel: Offset and others flags
 BOARD_NAME               := SRPSL10A001RU
@@ -44,16 +44,13 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 
 # Kernel: mkbootimg flags
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --board $(BOARD_NAME)
 
 # Prebuilt: Kernel
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
-BOARD_KERNEL_IMAGE_NAME := Image
-
-# Prebuilt: DTB
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilt/dtbs
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
 # Prebuilt: DTBO
 BOARD_INCLUDE_RECOVERY_DTBO := true
